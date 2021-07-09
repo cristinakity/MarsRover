@@ -1,0 +1,44 @@
+.jumbotron {
+  position: relative;
+  background-image: URL("assets/mars.png");
+  background-size: cover;
+}
+
+.jumbotron hr {
+  border-color: gray;
+}
+
+.jumbotron .block {
+  font-size: 20px;
+  background-color: white;
+  border-radius: 15px;
+  opacity: 0.7;
+  padding: 10px;
+}
+
+.cardinalPoint div {
+  display: table;
+  vertical-align: middle;
+}
+
+.cardinalPoint p {
+  color: dodgerblue;
+  text-align: center;
+  vertical-align: middle;
+  display: table-cell;
+  width: 100%;
+}
+
+.table {
+  border-color: gray;
+  height: 550px;
+  background-image: URL("assets/sand-terrain.png");
+}
+
+.table td {
+    border-color: gray;
+}
+
+.table img {
+  width: 70%;
+}

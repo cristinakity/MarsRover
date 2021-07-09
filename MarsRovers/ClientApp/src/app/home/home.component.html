@@ -1,0 +1,90 @@
+<div class="jumbotron">
+  <h1 class="display-2">Mars Rovers Navigator</h1>
+  <br />
+  <div class="block">
+    <p>Feel free to send navigation instructions to the rovers using this app.</p>
+    <hr class="my-1">
+    <p>
+      Input Data format:
+    </p>
+    <div class="row">
+      <div class="col-md-8">
+        <ul>
+          <li>First line: Plateau size (x, y)</li>
+          <li>
+            Next pair of lines: Rovers started point and navigation instructions
+            <ol>
+              <li>Position of the rover (x, y) plus the cardinal point the rover is facing to.</li>
+              <li>List of navigate instructions it can contain L (left), R (right) or M (move)</li>
+            </ol>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <p>
+          Example:
+          <br />
+          <br />5 5
+          <br />0 0 N
+          <br />LLMMRMRMRMMMLMRM
+        </p>
+      </div>
+    </div>
+  </div>
+ </div>
+<div style="text-align:center;">
+  <img src="assets/MarsRovers.png" class="img-fluid"/>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group">
+      <label for="name">Input Data</label>
+      <textarea rows="5" type="text" class="form-control" id="inputData"
+                required
+                [(ngModel)]="inputData" name="inputData"></textarea>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group">
+      <label for="results">Results</label>
+      <textarea rows="5" type="text" class="form-control" id="results"
+                [(ngModel)]="results" name="results"></textarea>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group">
+      <button class="btn btn-primary" type="submit" (click)="navigate()">Send</button>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div *ngIf="error" class="alert alert-danger col-md-12" role="alert">
+      {{ error }}
+    </div>
+  </div>
+</div>
+ROVERS
+{{ rovers | json }}
+<div *ngIf="plateau">
+  <h1 style="text-align: center;">Plateau: {{ plateau | json }}</h1>
+  <div class="row cardinalPoint"><p>North</p></div>
+  <div class="row">
+    <div class="col-md-1  cardinalPoint"><p>West</p></div>
+    <div class="col-md-10">
+      <table class="table table-responsive table-bordered">
+        <tr *ngFor="let r of rows">
+          <td *ngFor="let c of columns ">
+            x:{{c}}, y:{{r}}
+            <div *ngIf="isRoverHere(c, r)" style="text-align:center;">
+              <img [src]="'assets/MarsRovers_'+ roverFacingTo(c, r) +'.png'" class="img-fluid" />
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-md-1  cardinalPoint"><p>East</p></div>
+  </div>
+  <div class="row cardinalPoint"><p>South</p></div>
+</div>
+<br /><br />
